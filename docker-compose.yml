@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+  django_rest_starter:
+    image: iamgoku/django-rest-starter:latest
+    build: .
+    container_name: django_rest_starter
+    command: ./scripts.sh
+    volumes:
+      - .:/django-rest-starter
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - IN_DOCKER=1
